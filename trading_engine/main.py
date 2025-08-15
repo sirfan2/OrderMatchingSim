@@ -11,10 +11,11 @@ logger = TradeLogger(db_name=DB_PATH)
 engine = MatchingEngine(logger)
 
 def main():
-
+    # Stress Test: adds 100,000 orders
     from benchmark import benchmark
     benchmark()
 
+    # Singular Test:
     # start_time = time.time()
 
     # logger = TradeLogger()
