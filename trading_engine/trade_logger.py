@@ -1,7 +1,10 @@
+import os
 import sqlite3
 # Saves trades to SQLite database
 class TradeLogger:
-    def __init__(self, db_name="trades.db"):
+    def __init__(self, db_name=None):
+        if db_name is None:
+            db_name = os.path.join(os.path.dirname(__file__), "trades.db")
         self.conn = sqlite3.connect(db_name)
         self.cursor = self.conn.cursor()
         self.create_table()
