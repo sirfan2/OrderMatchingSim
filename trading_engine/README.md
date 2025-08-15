@@ -6,7 +6,7 @@ Uses SQLite to log executed trades.
 
 ## Features
 - Object-oriented design
-- Order matching by price-time priority
+- Order matching by price-time priority using heap queues
 - Trade logging to SQLite
 - Easily extendable to multiple symbols
 
