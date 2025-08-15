@@ -9,11 +9,14 @@ class MatchingEngine:
     
     def add_order(self, symbol, order):
         if symbol not in self.order_books:
-            from order_book import OrderBook
-            self.order_books[symbol] = OrderBook(symbol)
+            # from order_book import OrderBook
+            # self.order_books[symbol] = OrderBook(symbol)
+            from heap_order_book import HeapOrderBook
+            self.order_books[symbol] = HeapOrderBook(symbol)
 
         book = self.order_books[symbol]
-        book.add_order(order)
+        # book.add_order(order)
+        book.heap_add_order(order)
         self.match_orders(symbol)
 
     def match_orders(self, symbol):
@@ -22,8 +25,11 @@ class MatchingEngine:
             return
 
         while True:
-            best_buy = book.get_buy()
-            best_sell = book.get_sell()
+            # best_buy = book.get_buy()
+            # best_sell = book.get_sell()
+            
+            best_buy = book.heap_get_buy()
+            best_sell = book.heap_get_sell()
 
             if not best_buy or not best_sell:
                 break
@@ -49,8 +55,10 @@ class MatchingEngine:
 
                 # Remove fully filled orders
                 if best_buy.quantity == 0:
-                    book.remove_order(best_buy)
+                    # book.remove_order(best_buy)
+                    book.heap_remove_order(best_buy)
                 if best_sell.quantity == 0:
-                    book.remove_order(best_sell)
+                    # book.remove_order(best_sell)
+                    book.heap_remove_order(best_sell)
             else:
                 break

@@ -1,5 +1,5 @@
 from collections import deque
-# Stores buy and sell orders
+# Stores list of buy and sell orders organized by price
 class OrderBook:
     def __init__(self, symbol):
         self.symbol = symbol
